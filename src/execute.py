@@ -1,3 +1,5 @@
+import sys
+
 from arguments import args
 from common import configure_server, clear
 from downloads import download_minecraft_jar
@@ -12,8 +14,8 @@ while True:
     Answer = input("Continue? (Y|N)").lower()
     if Answer == "y":
         break
-    elif Answer == "n":
-        quit()
+    if Answer == "n":
+        sys.exit()
     else:
         clear()
 

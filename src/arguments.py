@@ -23,7 +23,8 @@ parser.add_argument(
     "--path",
     type=str,
     default=os.path.join(os.path.expanduser("~"), "Minecraft_Server"),
-    help="Pick a folder were to save/edit the server!\ne.x C:Users/User/Server (Default is User Directory!)"
+    help="Pick a folder were to save/edit the server!\n"
+         "e.x C:Users/User/Server (Default is User Directory!)"
 )
 parser.add_argument(
     "--port",

@@ -1,13 +1,13 @@
-import requests
 import os
 import re
+import requests
 from bs4 import BeautifulSoup
 
 
 def download_minecraft_jar(version: str, package: str, path: str):
     url = f"https://serverjar.org/download/{package}/{version}".lower()
 
-    response = requests.get(url)
+    response = requests.get(url, timeout=15)
     html_content = response.text
 
     soup = BeautifulSoup(html_content, 'html.parser')
@@ -29,7 +29,7 @@ def download_minecraft_jar(version: str, package: str, path: str):
         os.makedirs(os.path.dirname(path), exist_ok=True)
 
         print(f"Download was started to: {path}")
-        response = requests.get(url, stream=True)
+        response = requests.get(url, stream=True, timeout=15)
         response.raise_for_status()
 
         with open(path, "wb") as file:
