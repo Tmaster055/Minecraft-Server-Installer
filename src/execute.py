@@ -1,1 +1,2 @@
-print("Hello World")
+from arguments import args
+
