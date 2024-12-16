@@ -2,7 +2,7 @@ import subprocess
 import os
 
 def configure_server(version: str, package: str, path: str,
-                     port: int, ram: int):
+                     port: int, ram: float):
     command = [
         "java",
         f"-Xmx{ram}G",
@@ -30,3 +30,5 @@ def configure_server(version: str, package: str, path: str,
         print("The eula was accepted!")
     except FileNotFoundError:
         print(f"The file '{eula}' was not found!")
+
+    subprocess.run(command, cwd=path, check=True, shell=True)

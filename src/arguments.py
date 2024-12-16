@@ -25,6 +25,18 @@ parser.add_argument(
     default=os.path.join(os.path.expanduser("~"), "Minecraft_Server"),
     help="Pick a folder were to save/edit the server!\ne.x C:Users/User/Server (Default is User Directory!)"
 )
+parser.add_argument(
+    "--port",
+    type=int,
+    default=25565,
+    help="Choose a Port for the Server! Default is 25565"
+)
+parser.add_argument(
+    "--ram",
+    type=float,
+    default=2,
+    help="Choose how many RAM the server may use! Default is 2 Gigabyte!"
+)
 
 args = parser.parse_args()
 
@@ -33,3 +45,5 @@ if __name__ == "__main__":
     print(f"Minecraft-Version: {args.version}")
     print(f"Modloader-Package: {args.package}")
     print(f"Server Path: {args.path}")
+    print(f"Ram: {args.ram}")
+    print(f"Port: {args.port}")
