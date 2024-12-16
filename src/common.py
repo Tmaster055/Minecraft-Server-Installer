@@ -5,26 +5,53 @@ import sys
 
 
 def start_server(path: str):
-    print(f"Searching {path} after Minecraft-Server-Files...")
-    server_file = None
+    try:
+        for root, dirs, files in os.walk(path):
+            for dir_name in dirs:
+                if dir_name.startswith("minecraft_server"):
+                    server_path = os.path.join(root, dir_name)
 
-    for file in os.listdir(path):
-        if "minecraft_server" in file and file.endswith(".jar"):
-            server_file = file
-            break
+                    for file_name in os.listdir(server_path):
+                        if file_name.endswith(".jar"):
+                            jar_path = os.path.join(server_path, file_name)
+                            print(f"Found .jar-File: {jar_path}")
+    except FileNotFoundError:
+        raise FileNotFoundError("No server folder or jar file found!")
 
-    if not server_file:
-        raise ValueError("No server jar found!")
-
-    print(f"Found file: {server_file}")
+    if not jar_path or not server_path:
+        raise FileNotFoundError("No server folder or jar file found!")
 
     command = [
         "java",
         "-jar",
-        absolute,
+        jar_path,
         "--nogui"
     ]
-    subprocess.run(command, cwd=path, check=True)
+    subprocess.run(command, cwd=server_path, check=True)
+
+
+def open_settings(path: str):
+    try:
+        for root, dirs, files in os.walk(path):
+            for dir_name in dirs:
+                if dir_name.startswith("minecraft_server"):
+                    server_path = os.path.join(root, dir_name)
+
+                    for file_name in os.listdir(server_path):
+                        if file_name.endswith(".properties"):
+                            settings_path = os.path.join(server_path, file_name)
+                            print(f"Found settings-File: {settings_path}")
+    except FileNotFoundError:
+        raise FileNotFoundError("No server folder or settings file found!")
+
+    if not settings_path or not server_path:
+        raise FileNotFoundError("No server folder or settings file found!")
+
+    command = [
+        "nano",
+        settings_path,
+    ]
+    subprocess.run(command, cwd=server_path, check=True)
 
 
 def configure_server(version: str, package: str, path: str,
@@ -43,6 +70,14 @@ def configure_server(version: str, package: str, path: str,
     ]
     subprocess.run(command, cwd=path, check=True)
     eula = os.path.join(path, folder, "eula.txt")
+    while True:
+        Answer = input("Accept the eula? (Y|N)").lower()
+        if Answer == "y":
+            break
+        if Answer == "n":
+            sys.exit()
+        else:
+            pass
     try:
         with open(eula, "r", encoding="utf-8") as file:
             content = file.readlines()

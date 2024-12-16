@@ -17,6 +17,11 @@ parser.add_argument(
     help="To start a Server in your path!"
 )
 parser.add_argument(
+    "--settings",
+    action="store_true",
+    help="To open the settings of the Server in your path!"
+)
+parser.add_argument(
     "--version",
     type=str,
     help="Choose a minecraft version e.x 1.20.1, 1.21..."

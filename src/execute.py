@@ -1,7 +1,7 @@
 import sys
 
 from arguments import args
-from common import configure_server, clear
+from common import configure_server, clear, start_server, open_settings
 from downloads import download_minecraft_jar
 
 
@@ -25,7 +25,9 @@ if args.install:
 
     download_minecraft_jar(args.version, args.package, args.path)
     configure_server(args.version, args.package, args.path, args.port, args.ram)
-    sys.exit()
 
 if args.start:
+    start_server(args.path)
 
+if args.settings:
+    open_settings(args.path)
