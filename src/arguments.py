@@ -7,23 +7,34 @@ parser = argparse.ArgumentParser(
 )
 
 parser.add_argument(
+    "--install",
+    action="store_true",
+    help="To install a new Server!"
+)
+parser.add_argument(
+    "--start",
+    action="store_true",
+    help="To start a Server in your path!"
+)
+parser.add_argument(
     "--version",
     type=str,
-    required=True,
     help="Choose a minecraft version e.x 1.20.1, 1.21..."
 )
 parser.add_argument(
     "--package",
     type=str,
-    choices=["Forge", "Fabric", "Paper", "Vanilla", "Spoigot"],
+    choices=["Forge", "Fabric", "Paper", "Vanilla", "Spoigot", "Pufferfish",
+             "Bukkit", "Purpur", "Neoforge", "Quilt"],
     default="Vanilla",
     help="Choose a Modloader-Package e.x Forge, Vanilla..."
 )
 parser.add_argument(
     "--path",
     type=str,
-    default=os.path.join(os.path.expanduser("~"), "Minecraft_Server"),
+    default=os.path.expanduser("~"),
     help="Pick a folder were to save/edit the server!\n"
+         "It is creating a new folder in it!"
          "e.x C:Users/User/Server (Default is User Directory!)"
 )
 parser.add_argument(

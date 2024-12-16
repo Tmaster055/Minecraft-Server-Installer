@@ -1,11 +1,37 @@
 import subprocess
 import os
 import platform
+import sys
+
+
+def start_server(path: str):
+    print(f"Searching {path} after Minecraft-Server-Files...")
+    server_file = None
+
+    for file in os.listdir(path):
+        if "minecraft_server" in file and file.endswith(".jar"):
+            server_file = file
+            break
+
+    if not server_file:
+        raise ValueError("No server jar found!")
+
+    print(f"Found file: {server_file}")
+
+    command = [
+        "java",
+        "-jar",
+        absolute,
+        "--nogui"
+    ]
+    subprocess.run(command, cwd=path, check=True)
 
 
 def configure_server(version: str, package: str, path: str,
                      port: int, ram: float):
-    absolute = os.path.join(path, f"minecraft_server_{package}_{version}.jar".lower())
+    folder = f"minecraft_server_{package}_{version}"
+    filename = f"minecraft_server_{package}_{version}.jar".lower()
+    absolute = os.path.join(path, folder, filename)
     command = [
         "java",
         f"-Xmx{ram}G",
@@ -16,7 +42,7 @@ def configure_server(version: str, package: str, path: str,
         "--nogui"
     ]
     subprocess.run(command, cwd=path, check=True)
-    eula = os.path.join(path, "eula.txt")
+    eula = os.path.join(path, folder, "eula.txt")
     try:
         with open(eula, "r", encoding="utf-8") as file:
             content = file.readlines()

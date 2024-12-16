@@ -22,8 +22,9 @@ def download_minecraft_jar(version: str, package: str, path: str):
                 url = match.group(1)
                 break
 
+    folder = f"minecraft_server_{package}_{version}"
     filename = f"minecraft_server_{package}_{version}.jar".lower()
-    path = os.path.join(path, filename)
+    path = os.path.join(path, folder, filename)
 
     try:
         os.makedirs(os.path.dirname(path), exist_ok=True)
