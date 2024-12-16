@@ -1,12 +1,33 @@
 import requests
 import os
+import re
+from bs4 import BeautifulSoup
+
 
 def download_minecraft_jar(version: str, package: str, path: str):
     url = f"https://serverjar.org/download/{package}/{version}".lower()
+
+    response = requests.get(url)
+    html_content = response.text
+
+    soup = BeautifulSoup(html_content, 'html.parser')
+
+    script_tags = soup.find_all('script')
+
+    for script in script_tags:
+        script_content = script.string
+        if script_content:
+            match = re.search(r"window\.location\.href = '(https://[^\']+)'", script_content)
+            if match:
+                url = match.group(1)
+                break
+
     filename = f"minecraft_server_{package}_{version}.jar".lower()
     path = os.path.join(path, filename)
 
     try:
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+
         print(f"Download was started to: {path}")
         response = requests.get(url, stream=True)
         response.raise_for_status()

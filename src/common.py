@@ -1,17 +1,20 @@
 import subprocess
 import os
+import platform
 
 def configure_server(version: str, package: str, path: str,
                      port: int, ram: float):
+    absolute = os.path.join(path, f"minecraft_server_{package}_{version}.jar".lower())
     command = [
         "java",
         f"-Xmx{ram}G",
         "-jar",
-        f"minecraft_server_{package}_{version}.jar".lower(),
-        f"--port {port}",
+        absolute,
+        "--port",
+        str(port),
         "--nogui"
     ]
-    subprocess.run(command, cwd=path, check=True, shell=True)
+    subprocess.run(command, cwd=path, check=True)
     eula = os.path.join(path, "eula.txt")
     try:
         with open(eula, "r") as file:
@@ -31,4 +34,11 @@ def configure_server(version: str, package: str, path: str,
     except FileNotFoundError:
         print(f"The file '{eula}' was not found!")
 
-    subprocess.run(command, cwd=path, check=True, shell=True)
+    subprocess.run(command, cwd=path, check=True)
+
+
+def clear():
+    if platform.system() == "Windows":
+        os.system("cls")
+    else:
+        os.system("clear")
