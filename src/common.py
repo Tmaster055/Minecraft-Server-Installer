@@ -59,6 +59,7 @@ def configure_server(version: str, package: str, path: str,
     folder = f"minecraft_server_{package}_{version}"
     filename = f"minecraft_server_{package}_{version}.jar".lower()
     absolute = os.path.join(path, folder, filename)
+    folderpath = os.path.join(path, folder)
     command = [
         "java",
         f"-Xmx{ram}G",
@@ -68,7 +69,7 @@ def configure_server(version: str, package: str, path: str,
         str(port),
         "--nogui"
     ]
-    subprocess.run(command, cwd=path, check=True)
+    subprocess.run(command, cwd=folderpath, check=True)
     eula = os.path.join(path, folder, "eula.txt")
     while True:
         Answer = input("Accept the eula? (Y|N)").lower()
@@ -96,7 +97,7 @@ def configure_server(version: str, package: str, path: str,
     except FileNotFoundError:
         print(f"The file '{eula}' was not found!")
 
-    subprocess.run(command, cwd=path, check=True)
+    subprocess.run(command, cwd=folderpath, check=True)
 
 
 def clear():
