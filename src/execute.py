@@ -2,8 +2,11 @@ import sys
 
 from arguments import args
 from common import configure_server, clear, start_server, open_settings
-from downloads import download_minecraft_jar
+from downloads import download_minecraft_jar, install_java_21
 
+
+if args.install_java_21:
+    install_java_21()
 
 if args.install:
     if not args.version:
@@ -27,7 +30,7 @@ if args.install:
     configure_server(args.version, args.package, args.path, args.port, args.ram)
 
 if args.start:
-    start_server(args.path)
+    start_server(args.path, args.ram)
 
 if args.settings:
     open_settings(args.path)

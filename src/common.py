@@ -4,11 +4,11 @@ import platform
 import sys
 
 
-def start_server(path: str):
+def start_server(path: str, ram: float):
     try:
         for root, dirs, files in os.walk(path):
             for dir_name in dirs:
-                if dir_name.startswith("minecraft_server"):
+                if dir_name.startswith("Minecraft_Server"):
                     server_path = os.path.join(root, dir_name)
 
                     for file_name in os.listdir(server_path):
@@ -21,8 +21,11 @@ def start_server(path: str):
     if not jar_path or not server_path:
         raise FileNotFoundError("No server folder or jar file found!")
 
+    ram = ram * 1000
     command = [
         "java",
+        f"-Xmx{int(ram)}m",
+        f"-Xms{int(ram)}m",
         "-jar",
         jar_path,
         "--nogui"
@@ -34,7 +37,7 @@ def open_settings(path: str):
     try:
         for root, dirs, files in os.walk(path):
             for dir_name in dirs:
-                if dir_name.startswith("minecraft_server"):
+                if dir_name.startswith("Minecraft_Server"):
                     server_path = os.path.join(root, dir_name)
 
                     for file_name in os.listdir(server_path):
@@ -56,19 +59,26 @@ def open_settings(path: str):
 
 def configure_server(version: str, package: str, path: str,
                      port: int, ram: float):
-    folder = f"minecraft_server_{package}_{version}"
-    filename = f"minecraft_server_{package}_{version}.jar".lower()
+    folder = f"Minecraft_Server_{package}_{version}"
+    filename = f"Minecraft_Server_{package}_{version}.jar"
     absolute = os.path.join(path, folder, filename)
     folderpath = os.path.join(path, folder)
+
+    if package == "Forge":
+        unpack_forge_server(absolute, folderpath)
+
+    ram = ram * 1000
     command = [
         "java",
-        f"-Xmx{ram}G",
+        f"-Xmx{int(ram)}m",
+        f"-Xms{int(ram)}m",
         "-jar",
         absolute,
         "--port",
         str(port),
         "--nogui"
     ]
+
     subprocess.run(command, cwd=folderpath, check=True)
     eula = os.path.join(path, folder, "eula.txt")
     while True:
@@ -98,6 +108,17 @@ def configure_server(version: str, package: str, path: str,
         print(f"The file '{eula}' was not found!")
 
     subprocess.run(command, cwd=folderpath, check=True)
+
+
+def unpack_forge_server(path: str, folder: str):
+    command = [
+        "java",
+        "-jar",
+        path,
+        "--nogui"
+    ]
+
+    subprocess.run(command, cwd=folder, check=True)
 
 
 def clear():

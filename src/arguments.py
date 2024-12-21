@@ -22,6 +22,11 @@ parser.add_argument(
     help="To open the settings of the Server in your path!"
 )
 parser.add_argument(
+    "--install_java_21",
+    action="store_true",
+    help="To install java version 21 to run the server!"
+)
+parser.add_argument(
     "--version",
     type=str,
     help="Choose a minecraft version e.x 1.20.1, 1.21..."
@@ -29,7 +34,7 @@ parser.add_argument(
 parser.add_argument(
     "--package",
     type=str,
-    choices=["Forge", "Fabric", "Paper", "Vanilla", "Spoigot", "Pufferfish",
+    choices=["Forge", "Fabric", "Paper", "Vanilla", "Spigot", "Pufferfish",
              "Bukkit", "Purpur", "Neoforge", "Quilt"],
     default="Vanilla",
     help="Choose a Modloader-Package e.x Forge, Vanilla..."

@@ -22,8 +22,8 @@ def download_minecraft_jar(version: str, package: str, path: str):
                 url = match.group(1)
                 break
 
-    folder = f"minecraft_server_{package}_{version}"
-    filename = f"minecraft_server_{package}_{version}.jar".lower()
+    folder = f"Minecraft_Server_{package}_{version}"
+    filename = f"Minecraft_Server_{package}_{version}.jar"
     path = os.path.join(path, folder, filename)
 
     try:
