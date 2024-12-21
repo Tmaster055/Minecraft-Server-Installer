@@ -115,11 +115,16 @@ def unpack_forge_server(path: str, folder: str):
         "java",
         "-jar",
         path,
-        "--nogui"
+        "--installServer",
     ]
 
     subprocess.run(command, cwd=folder, check=True)
-
+    os.remove(path)
+    for file_name in os.listdir(folder):
+        if file_name.endswith(".jar"):
+            jar_path = os.path.join(folder, file_name)
+            print(f"Found .jar-File: {jar_path}")
+    os.rename(jar_path, path)
 
 def clear():
     if platform.system() == "Windows":
