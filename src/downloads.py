@@ -15,6 +15,9 @@ def download_minecraft_jar(version: str, package: str, path: str):
     else:
         url = get_serverjar_link(version, package)
 
+    if url is None:
+        raise  ValueError("The Minecraft Version does not exist for your package!")
+
     folder = f"Minecraft_Server_{package}_{version}"
     filename = f"Minecraft_Server_{package}_{version}.jar"
     path = os.path.join(path, folder, filename)
@@ -52,13 +55,17 @@ def get_serverjar_link(version: str, package: str):
             if match:
                 url = match.group(1)
                 return url
+    return None
 
 
 def get_forge_link(version: str):
     url = f"https://files.minecraftforge.net/net/minecraftforge/forge/index_{version}.html"
-    response = requests.get(url)
-    response.raise_for_status()
-    html = response.text
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        html = response.text
+    except requests.exceptions.HTTPError:
+        raise ValueError("The Minecraft Version does not exist for your package!")
 
     soup = BeautifulSoup(html, 'html.parser')
 
@@ -68,6 +75,7 @@ def get_forge_link(version: str):
             forge_version = version_tag.text.strip()
             link = f"https://maven.minecraftforge.net/net/minecraftforge/forge/{version}-{forge_version}/forge-{version}-{forge_version}-installer.jar"
             return link
+    return None
 
 
 def get_neoforge_link(version: str):
@@ -154,5 +162,5 @@ def install_java_21():
 
 
 if __name__ == "__main__":
-    download_minecraft_jar("1.20.4", "Vanilla", "/home/tobias/Downloads")
+    download_minecraft_jar("1.17.6", "Forge", "/home/tobias/Downloads")
     print(get_neoforge_link("1.21.1"))

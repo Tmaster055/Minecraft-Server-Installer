@@ -18,7 +18,7 @@ if args.install:
         print("Path: ", args.path)
         print(f"RAM: {args.ram}G")
         print("Port: ", args.port)
-        Answer = input("Continue? (Y|N)").lower()
+        Answer = input("Continue? (Y|N) ").lower()
         if Answer == "y":
             break
         if Answer == "n":

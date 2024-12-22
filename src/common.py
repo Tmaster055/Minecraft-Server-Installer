@@ -25,7 +25,6 @@ def start_server(path: str, ram: float):
     command = [
         "java",
         f"-Xmx{int(ram)}m",
-        f"-Xms{int(ram)}m",
         "-jar",
         jar_path,
         "--nogui"
@@ -73,7 +72,6 @@ def configure_server(version: str, package: str, path: str,
     command = [
         "java",
         f"-Xmx{int(ram)}m",
-        f"-Xms{int(ram)}m",
         "-jar",
         absolute,
         "--port",
@@ -84,7 +82,7 @@ def configure_server(version: str, package: str, path: str,
     subprocess.run(command, cwd=folderpath, check=True)
     eula = os.path.join(path, folder, "eula.txt")
     while True:
-        Answer = input("Accept the eula? (Y|N)").lower()
+        Answer = input("Accept the eula? (Y|N) ").lower()
         if Answer == "y":
             break
         if Answer == "n":
@@ -149,8 +147,8 @@ def unpack_neoforge_server(path: str, folder: str):
             print(f"Found .jar-File: {jar_path}")
             os.rename(jar_path, path)
     if not jar_path:
-        raise ValueError("This Forge version has to be started in the folder\nand is not"
-                         "currently supported by this Tool!")
+        raise ValueError("This Forge version has to be started in the folder\n"
+                         "and is not currently supported by this Tool!")
 
 
 def clear():

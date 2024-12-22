@@ -44,7 +44,7 @@ parser.add_argument(
     type=str,
     default=os.path.expanduser("~"),
     help="Pick a folder were to save/edit the server!\n"
-         "It is creating a new folder in it!"
+         "It is creating a new folder in it!\n"
          "e.x C:Users/User/Server (Default is User Directory!)"
 )
 parser.add_argument(
