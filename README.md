@@ -19,9 +19,9 @@ pip install -U mc-server-tool
 mc-server-tool --help
 ```
 ```
-usage: execute.py [-h] [--install] [--start] [--settings] [--install_java_21] [--version VERSION]
-                  [--package {Forge,Fabric,Paper,Vanilla,Spigot,Pufferfish,Bukkit,Purpur,Neoforge,Quilt}]
-                  [--path PATH] [--port PORT] [--ram RAM]
+usage: mc-server-tool [-h] [--install] [--start] [--settings] [--install_java_21] [--version VERSION]
+                      [--package {Forge,Fabric,Paper,Vanilla,Spigot,Pufferfish,Bukkit,Purpur,Neoforge,Quilt,Folia,Mohist,Arclight,Sponge}] [--path PATH] [--port PORT]
+                      [--ram RAM]
 
 Minecraft Server Tool Arguments
 
@@ -32,10 +32,10 @@ options:
   --settings            To open the settings of the Server in your path!
   --install_java_21     To install java version 21 to run the server!
   --version VERSION     Choose a minecraft version e.x 1.20.1, 1.21...
-  --package {Forge,Fabric,Paper,Vanilla,Spigot,Pufferfish,Bukkit,Purpur,Neoforge,Quilt}
+  --package {Forge,Fabric,Paper,Vanilla,Spigot,Pufferfish,Bukkit,Purpur,Neoforge,Quilt,Folia,Mohist,Arclight,Sponge}
                         Choose a Modloader-Package e.x Forge, Vanilla...
-  --path PATH           Pick a folder were to save/edit the server! It is creating a new folder in it! e.x
-                        C:Users/User/Server (Default is User Directory!)
+  --path PATH           Pick a folder were to save/edit the server! It is creating a new folder in it! 
+                        e.x C:Users/User/Server (Default is User Directory!)
   --port PORT           Choose a Port for the Server! Default is 25565
   --ram RAM             Choose how many RAM the server may use! Default is 2 Gigabyte!
 ```
