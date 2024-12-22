@@ -4,11 +4,13 @@ import platform
 import sys
 
 
-def start_server(path: str, ram: float):
+def start_server(path: str, ram: float, version: str):
+    if not version:
+        version = ""
     try:
         for root, dirs, files in os.walk(path):
             for dir_name in dirs:
-                if dir_name.startswith("Minecraft_Server"):
+                if dir_name.startswith("Minecraft_Server") and dir_name.endswith(version):
                     server_path = os.path.join(root, dir_name)
 
                     for file_name in os.listdir(server_path):
@@ -32,11 +34,13 @@ def start_server(path: str, ram: float):
     subprocess.run(command, cwd=server_path, check=True)
 
 
-def open_settings(path: str):
+def open_settings(path: str, version: str):
+    if not version:
+        version = ""
     try:
         for root, dirs, files in os.walk(path):
             for dir_name in dirs:
-                if dir_name.startswith("Minecraft_Server"):
+                if dir_name.startswith("Minecraft_Server") and dir_name.endswith(version):
                     server_path = os.path.join(root, dir_name)
 
                     for file_name in os.listdir(server_path):
