@@ -1,4 +1,5 @@
 import sys
+import subprocess
 
 from mc_server_tool.src import (
     args,
@@ -40,3 +41,6 @@ def main():
 
     if args.settings:
         open_settings(args.path)
+
+    if not args.start and not args.settings and not args.install and not args.install_java_21:
+        subprocess.run(["mc-server-tool", "--help"])
