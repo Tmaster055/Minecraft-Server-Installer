@@ -80,34 +80,35 @@ def configure_server(version: str, package: str, path: str,
     ]
 
     subprocess.run(command, cwd=folderpath, check=True)
-    eula = os.path.join(path, folder, "eula.txt")
-    while True:
-        Answer = input("Accept the eula? (Y|N) ").lower()
-        if Answer == "y":
-            break
-        if Answer == "n":
-            sys.exit()
-        else:
-            pass
-    try:
-        with open(eula, "r", encoding="utf-8") as file:
-            content = file.readlines()
-
-        updated_content = []
-        for line in content:
-            if "eula=false" in line:
-                updated_content.append(line.replace("eula=false", "eula=true"))
+    if package != "Mohist":
+        eula = os.path.join(path, folder, "eula.txt")
+        while True:
+            Answer = input("Accept the eula? (Y|N) ").lower()
+            if Answer == "y":
+                break
+            if Answer == "n":
+                sys.exit()
             else:
-                updated_content.append(line)
+                pass
+        try:
+            with open(eula, "r", encoding="utf-8") as file:
+                content = file.readlines()
 
-        with open(eula, "w", encoding="utf-8") as file:
-            file.writelines(updated_content)
+            updated_content = []
+            for line in content:
+                if "eula=false" in line:
+                    updated_content.append(line.replace("eula=false", "eula=true"))
+                else:
+                    updated_content.append(line)
 
-        print("The eula was accepted!")
-    except FileNotFoundError:
-        print(f"The file '{eula}' was not found!")
+            with open(eula, "w", encoding="utf-8") as file:
+                file.writelines(updated_content)
 
-    subprocess.run(command, cwd=folderpath, check=True)
+            print("The eula was accepted!")
+        except FileNotFoundError:
+            print(f"The file '{eula}' was not found!")
+
+        subprocess.run(command, cwd=folderpath, check=True)
 
 
 def unpack_forge_server(path: str, folder: str):

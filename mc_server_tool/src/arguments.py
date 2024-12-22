@@ -35,7 +35,8 @@ parser.add_argument(
     "--package",
     type=str,
     choices=["Forge", "Fabric", "Paper", "Vanilla", "Spigot", "Pufferfish",
-             "Bukkit", "Purpur", "Neoforge", "Quilt"],
+             "Bukkit", "Purpur", "Neoforge", "Quilt", "Folia", "Mohist",
+             "Arclight", "Sponge"],
     default="Vanilla",
     help="Choose a Modloader-Package e.x Forge, Vanilla..."
 )

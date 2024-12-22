@@ -73,14 +73,14 @@ You also let install java 21:
 mc-server-tool --install_java_21
 ```
 ### Package Support 
-| Supported Packages | Status | Supported Packages | Status                                                                     |
-|--------------------|-------|---------------------|----------------------------------------------------------------------------|
-| Vanilla            | ✔️    | Forge               | ➖ (installing is fine but <br> starting and configuring <br> may not work) |
-| Paper              | ✔️    | Neoforge            | ✔️                                                                         |
-| Spigot             | ✔️    | Fabric              | ✔️                                                                         |
-| Bukkit             | ✔️    | Pufferfish          | ✔️                                                                         |
-| Quilt              | ✔️    | Purpur              | ✔️                                                                         |
-
+| Supported Packages | Status  | Supported Packages   | Status                                                                     | Supported Packages | Status  |
+|--------------------|---------|----------------------|----------------------------------------------------------------------------|--------------------|---------|
+| Vanilla            | ✔️      | Forge                | ➖ (installing is fine but <br> starting and configuring <br> may not work) | Folia              | ✔️      |
+| Paper              | ✔️      | Neoforge             | ✔️                                                                         | Mohist             | ✔️      |
+| Spigot             | ✔️      | Fabric               | ✔️                                                                         | Arclight           | ✔️      |
+| Bukkit             | ✔️      | Pufferfish           | ✔️                                                                         | Sponge             | ✔️      |
+| Quilt              | ✔️      | Purpur               | ✔️                                                                         |
+Note: Not all versions are tested and there may occur problems with some versions!
 ### Upcoming Tasks
   - [x] Make Forge work
   - [x] Make Neoforge work
