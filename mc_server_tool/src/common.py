@@ -84,6 +84,8 @@ def configure_server(version: str, package: str, path: str,
     ]
 
     subprocess.run(command, cwd=folderpath, check=True)
+    if package == "Arclight":
+        clean_arclight_folder(folderpath)
     if package != "Mohist":
         eula = os.path.join(path, folder, "eula.txt")
         while True:
@@ -154,6 +156,16 @@ def unpack_neoforge_server(path: str, folder: str):
     if not jar_path:
         raise ValueError("This Forge version has to be started in the folder\n"
                          "and is not currently supported by this Tool!")
+
+
+def clean_arclight_folder(folder: str):
+    try:
+        for file_name in os.listdir(folder):
+            if file_name.endswith(".jar") and not file_name.startswith("Minecraft_Server"):
+                jar_path = os.path.join(folder, file_name)
+                os.remove(jar_path)
+    except FileNotFoundError:
+        pass
 
 
 def clear():
