@@ -8,15 +8,15 @@ and nearly all Versions out there!
 - ### Installation
 Run this command in your command prompt!
 ```shell
-pip install mc-server-tool
+pip install mc_server_tool
 ```
 To update:
 ```shell
-pip install -U mc-server-tool
+pip install -U mc_server_tool
 ```
 - ### Documentation
 ```shell
-mc-server-tool --help
+mc_server_tool --help
 ```
 ```
 usage: execute.py [-h] [--install] [--start] [--settings] [--install_java_21] [--version VERSION]
@@ -42,35 +42,35 @@ options:
 - ### Examples
 Installs a server with version 1.20.4:
 ```shell
-mc-server-tool --install --version 1.20.4 
+mc_server_tool --install --version 1.20.4 
 ```
 Installs a server with version 1.20.4 on Paper:
 ```shell
-mc-server-tool --install --version 1.20.4 --package Paper
+mc_server_tool --install --version 1.20.4 --package Paper
 ```
 Installs and starts the server with 5G max ram usage:
 ```shell
-mc-server-tool --install --version 1.20.4 --ram 5
+mc_server_tool --install --version 1.20.4 --ram 5
 ```
 Installs with the port 27767:
 ```shell
-mc-server-tool --install --version 1.20.4 --port 27767
+mc_server_tool --install --version 1.20.4 --port 27767
 ```
 Starts your server again:
 ```shell
-mc-server-tool --start
+mc_server_tool --start
 ```
 Starts your Forge server if you have multiple servers in one folder:
 ```shell
-mc-server-tool --start --package Forge
+mc_server_tool --start --package Forge
 ```
 You can also specify the path on start and installation: 
 ```shell
-mc-server-tool --start --path /home/user/downloads
+mc_server_tool --start --path /home/user/downloads
 ```
 You also let install java 21:
 ```shell
-mc-server-tool --install_java_21
+mc_server_tool --install_java_21
 ```
 ### Package Support 
 | Supported Packages | Status | Supported Packages | Status                                                                     |
