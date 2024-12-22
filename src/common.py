@@ -66,6 +66,8 @@ def configure_server(version: str, package: str, path: str,
 
     if package == "Forge":
         unpack_forge_server(absolute, folderpath)
+    elif package == "Neoforge":
+        unpack_neoforge_server(absolute, folderpath)
 
     ram = ram * 1000
     command = [
@@ -115,7 +117,7 @@ def unpack_forge_server(path: str, folder: str):
         "java",
         "-jar",
         path,
-        "--installServer",
+        "--installServer"
     ]
 
     subprocess.run(command, cwd=folder, check=True)
@@ -124,7 +126,32 @@ def unpack_forge_server(path: str, folder: str):
         if file_name.endswith(".jar"):
             jar_path = os.path.join(folder, file_name)
             print(f"Found .jar-File: {jar_path}")
-    os.rename(jar_path, path)
+            os.rename(jar_path, path)
+    if not jar_path:
+        raise ValueError("This Forge version has to be started in the folder\nand is not"
+                         "currently supported by this Tool!")
+
+
+def unpack_neoforge_server(path: str, folder: str):
+    command = [
+        "java",
+        "-jar",
+        path,
+        "--installServer",
+        "--server-jar"
+    ]
+
+    subprocess.run(command, cwd=folder, check=True)
+    os.remove(path)
+    for file_name in os.listdir(folder):
+        if file_name.endswith(".jar"):
+            jar_path = os.path.join(folder, file_name)
+            print(f"Found .jar-File: {jar_path}")
+            os.rename(jar_path, path)
+    if not jar_path:
+        raise ValueError("This Forge version has to be started in the folder\nand is not"
+                         "currently supported by this Tool!")
+
 
 def clear():
     if platform.system() == "Windows":
