@@ -34,9 +34,13 @@ def start_server(path: str, ram: float, version: str):
     subprocess.run(command, cwd=server_path, check=True)
 
 
-def open_settings(path: str, version: str):
+def open_settings(path: str, version: str, package: str):
     if not version:
         version = ""
+    if package == "BungeeCord":
+        settings = "config.yml"
+    else:
+        settings = ".properties"
     try:
         for root, dirs, files in os.walk(path):
             for dir_name in dirs:
@@ -44,7 +48,7 @@ def open_settings(path: str, version: str):
                     server_path = os.path.join(root, dir_name)
 
                     for file_name in os.listdir(server_path):
-                        if file_name.endswith(".properties"):
+                        if file_name.endswith(settings):
                             settings_path = os.path.join(server_path, file_name)
                             print(f"Found settings-File: {settings_path}")
     except FileNotFoundError:
@@ -86,7 +90,7 @@ def configure_server(version: str, package: str, path: str,
     subprocess.run(command, cwd=folderpath, check=True)
     if package == "Arclight":
         clean_arclight_folder(folderpath)
-    if package != "Mohist":
+    if package != "Mohist" or package != "BungeeCord":
         eula = os.path.join(path, folder, "eula.txt")
         while True:
             Answer = input("Accept the eula? (Y|N) ").lower()

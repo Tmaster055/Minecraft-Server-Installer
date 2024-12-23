@@ -40,7 +40,7 @@ def main():
         start_server(args.path, args.ram, args.version)
 
     if args.settings:
-        open_settings(args.path, args.version)
+        open_settings(args.path, args.version, args.package)
 
     if not args.start and not args.settings and not args.install and not args.install_java_21:
         subprocess.run(["mc-server-tool", "--help"])

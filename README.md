@@ -79,7 +79,7 @@ mc-server-tool --install_java_21
 | Paper              | ✔️      | Neoforge             | ✔️                                                                         | Mohist             | ✔️      |
 | Spigot             | ✔️      | Fabric               | ✔️                                                                         | Arclight           | ✔️      |
 | Bukkit             | ✔️      | Pufferfish           | ✔️                                                                         | Sponge             | ✔️      |
-| Quilt              | ✔️      | Purpur               | ✔️                                                                         |
+| Quilt              | ✔️      | Purpur               | ✔️                                                                         | BungeeCord         | ✔️      |
 
 Note: Not all versions are tested and there may occur problems with some versions!
 ### Upcoming Tasks
