@@ -37,7 +37,7 @@ def main():
         configure_server(args.version, args.package, args.path, args.port, args.ram)
 
     if args.start:
-        start_server(args.path, args.ram, args.version)
+        start_server(args.path, args.ram, args.version, args.package)
 
     if args.settings:
         open_settings(args.path, args.version, args.package)

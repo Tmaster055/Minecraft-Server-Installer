@@ -85,9 +85,10 @@ Note: Not all versions are tested and there may occur problems with some version
 ### Upcoming Tasks
   - [x] Make Forge work
   - [x] Make Neoforge work
-  - [ ] Make starting easier with package and version
+  - [x] Make starting easier with package and version
   - [ ] Implement more different error messages
   - [ ] Add support for more packages
+  - [ ] Add support for MCPE Server
 ## Support 
 If you see any issues you can open one in github or contact me on discord
 with the Username`Tmaster055`!

@@ -4,21 +4,28 @@ import platform
 import sys
 
 
-def start_server(path: str, ram: float, version: str):
+def start_server(path: str, ram: float, version: str, package: str):
     if not version:
         version = ""
-    try:
+    server_path = None
+    jar_path = None
+    package_string = f"Minecraft_Server_{package}"
+    counter = 0
+    while True:
         for root, dirs, files in os.walk(path):
             for dir_name in dirs:
-                if dir_name.startswith("Minecraft_Server") and dir_name.endswith(version):
+                if dir_name.startswith(package_string) and dir_name.endswith(version):
                     server_path = os.path.join(root, dir_name)
 
                     for file_name in os.listdir(server_path):
                         if file_name.endswith(".jar"):
                             jar_path = os.path.join(server_path, file_name)
                             print(f"Found .jar-File: {jar_path}")
-    except FileNotFoundError:
-        raise FileNotFoundError("No server folder or jar file found!")
+        if server_path or counter > 1:
+            break
+        else:
+            package_string = "Minecraft_Server"
+            counter += 1
 
     if not jar_path or not server_path:
         raise FileNotFoundError("No server folder or jar file found!")
@@ -41,19 +48,25 @@ def open_settings(path: str, version: str, package: str):
         settings = "config.yml"
     else:
         settings = ".properties"
-    try:
+    server_path = None
+    settings_path = None
+    package_string = f"Minecraft_Server_{package}"
+    counter = 0
+    while True:
         for root, dirs, files in os.walk(path):
             for dir_name in dirs:
-                if dir_name.startswith("Minecraft_Server") and dir_name.endswith(version):
+                if dir_name.startswith(package_string) and dir_name.endswith(version):
                     server_path = os.path.join(root, dir_name)
 
                     for file_name in os.listdir(server_path):
                         if file_name.endswith(settings):
                             settings_path = os.path.join(server_path, file_name)
                             print(f"Found settings-File: {settings_path}")
-    except FileNotFoundError:
-        raise FileNotFoundError("No server folder or settings file found!")
-
+        if server_path or counter > 1:
+            break
+        else:
+            package_string = "Minecraft_Server"
+            counter += 1
     if not settings_path or not server_path:
         raise FileNotFoundError("No server folder or settings file found!")
 
