@@ -44,10 +44,7 @@ def start_server(path: str, ram: float, version: str, package: str):
 def open_settings(path: str, version: str, package: str):
     if not version:
         version = ""
-    if package == "BungeeCord":
-        settings = "config.yml"
-    else:
-        settings = ".properties"
+    settings = ".properties"
     server_path = None
     settings_path = None
     package_string = f"Minecraft_Server_{package}"
@@ -63,7 +60,11 @@ def open_settings(path: str, version: str, package: str):
                             settings_path = os.path.join(server_path, file_name)
                             print(f"Found settings-File: {settings_path}")
         if server_path or counter > 1:
-            break
+            if settings_path or counter > 2:
+                break
+            else:
+                settings = "config.yml"
+                counter += 1
         else:
             package_string = "Minecraft_Server"
             counter += 1
