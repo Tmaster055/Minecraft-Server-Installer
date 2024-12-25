@@ -107,10 +107,10 @@ def configure_server(version: str, package: str, path: str,
     if package != "Mohist" or package != "BungeeCord":
         eula = os.path.join(path, folder, "eula.txt")
         while True:
-            Answer = input("Accept the eula? (Y|N) ").lower()
-            if Answer == "y":
+            answer = input("Accept the eula? (Y|N) ").lower()
+            if answer == "y":
                 break
-            if Answer == "n":
+            if answer == "n":
                 sys.exit()
             else:
                 pass

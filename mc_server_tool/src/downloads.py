@@ -61,7 +61,7 @@ def get_serverjar_link(version: str, package: str):
 def get_forge_link(version: str):
     url = f"https://files.minecraftforge.net/net/minecraftforge/forge/index_{version}.html"
     try:
-        response = requests.get(url)
+        response = requests.get(url, timeout=15)
         response.raise_for_status()
         html = response.text
     except requests.exceptions.HTTPError:
@@ -73,7 +73,8 @@ def get_forge_link(version: str):
     for version_tag in version_tags:
         if version_tag.find('i', class_='promo-latest'):
             forge_version = version_tag.text.strip()
-            link = f"https://maven.minecraftforge.net/net/minecraftforge/forge/{version}-{forge_version}/forge-{version}-{forge_version}-installer.jar"
+            link = (f"https://maven.minecraftforge.net/net/minecraftforge/forge/"
+                    f"{version}-{forge_version}/forge-{version}-{forge_version}-installer.jar")
             return link
     return None
 
@@ -82,7 +83,7 @@ def get_neoforge_link(version: str):
     formatted_version = version.lstrip('1.')
 
     url = 'https://maven.neoforged.net/releases/net/neoforged/neoforge'
-    response = requests.get(url)
+    response = requests.get(url, timeout=15)
 
     soup = BeautifulSoup(response.text, 'html.parser')
     links = soup.find_all('a', href=True)
@@ -108,17 +109,19 @@ def get_neoforge_link(version: str):
 
     if highest_version:
         beta_suffix = '-beta' if is_beta else ''
-        link = f"https://maven.neoforged.net/releases/net/neoforged/neoforge/{highest_version}{beta_suffix}/neoforge-{highest_version}{beta_suffix}-installer.jar"
+        link = (f"https://maven.neoforged.net/releases/net/neoforged/neoforge/{highest_version}"
+                f"{beta_suffix}/neoforge-{highest_version}{beta_suffix}-installer.jar")
         return link
-    else:
-        return None
+
+    return None
 
 
 def install_java_21():
     def detect_package_manager():
         package_managers = ["apt", "dnf", "yum", "pacman", "zypper"]
         for manager in package_managers:
-            if subprocess.call(["which", manager], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL) == 0:
+            if subprocess.call(["which", manager],
+                               stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL) == 0:
                 return manager
         return None
 

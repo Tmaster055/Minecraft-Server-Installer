@@ -25,10 +25,10 @@ def main():
             print("Path: ", args.path)
             print(f"RAM: {args.ram}G")
             print("Port: ", args.port)
-            Answer = input("Continue? (Y|N) ").lower()
-            if Answer == "y":
+            answer = input("Continue? (Y|N) ").lower()
+            if answer == "y":
                 break
-            if Answer == "n":
+            if answer == "n":
                 sys.exit()
             else:
                 clear()
@@ -43,4 +43,4 @@ def main():
         open_settings(args.path, args.version, args.package)
 
     if not args.start and not args.settings and not args.install and not args.install_java_21:
-        subprocess.run(["mc-server-tool", "--help"])
+        subprocess.run(["mc-server-tool", "--help"], check=True)
