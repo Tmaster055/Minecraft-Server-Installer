@@ -6,6 +6,11 @@ import subprocess
 import requests
 from bs4 import BeautifulSoup
 
+from mc_server_tool.src import (
+    DEFAULT_TIMEOUT,
+    RANDOM_USER_AGENT
+)
+
 
 def download_minecraft_jar(version: str, package: str, path: str):
     if package == "Forge":
@@ -26,7 +31,7 @@ def download_minecraft_jar(version: str, package: str, path: str):
         os.makedirs(os.path.dirname(path), exist_ok=True)
 
         print(f"Download was started to: {path}")
-        response = requests.get(url, stream=True, timeout=15)
+        response = requests.get(url, stream=True, timeout=DEFAULT_TIMEOUT)
         response.raise_for_status()
 
         with open(path, "wb") as file:
@@ -39,9 +44,9 @@ def download_minecraft_jar(version: str, package: str, path: str):
 
 
 def get_serverjar_link(version: str, package: str):
-    url = f"https://serverjar.org/download/{package}/{version}".lower()
+    url = f"https://serverjar.org/download-version/{package}/{version}".lower()
 
-    response = requests.get(url, timeout=15)
+    response = requests.get(url, timeout=DEFAULT_TIMEOUT)
     html_content = response.text
 
     soup = BeautifulSoup(html_content, 'html.parser')
@@ -61,7 +66,7 @@ def get_serverjar_link(version: str, package: str):
 def get_forge_link(version: str):
     url = f"https://files.minecraftforge.net/net/minecraftforge/forge/index_{version}.html"
     try:
-        response = requests.get(url, timeout=15)
+        response = requests.get(url, timeout=DEFAULT_TIMEOUT)
         response.raise_for_status()
         html = response.text
     except requests.exceptions.HTTPError:
@@ -83,7 +88,7 @@ def get_neoforge_link(version: str):
     formatted_version = version.lstrip('1.')
 
     url = 'https://maven.neoforged.net/releases/net/neoforged/neoforge'
-    response = requests.get(url, timeout=15)
+    response = requests.get(url, timeout=DEFAULT_TIMEOUT)
 
     soup = BeautifulSoup(response.text, 'html.parser')
     links = soup.find_all('a', href=True)

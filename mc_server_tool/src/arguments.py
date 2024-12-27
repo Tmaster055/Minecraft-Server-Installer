@@ -1,6 +1,13 @@
 import argparse
 import os
 
+from mc_server_tool.src import (
+    DEFAULT_PACKAGE,
+    DEFAULT_PORT,
+    DEFAULT_PATH,
+    DEFAULT_RAM
+)
+
 
 parser = argparse.ArgumentParser(
     description="Minecraft Server Tool Arguments"
@@ -37,13 +44,13 @@ parser.add_argument(
     choices=["Forge", "Fabric", "Paper", "Vanilla", "Spigot", "Pufferfish",
              "Bukkit", "Purpur", "Neoforge", "Quilt", "Folia", "Mohist",
              "Arclight", "Sponge", "BungeeCord"],
-    default="Vanilla",
+    default=DEFAULT_PACKAGE,
     help="Choose a Modloader-Package e.x Forge, Vanilla..."
 )
 parser.add_argument(
     "--path",
     type=str,
-    default=os.path.expanduser("~"),
+    default=DEFAULT_PATH,
     help="Pick a folder were to save/edit the server!\n"
          "It is creating a new folder in it!\n"
          "e.x C:Users/User/Server (Default is User Directory!)\n"
@@ -51,13 +58,13 @@ parser.add_argument(
 parser.add_argument(
     "--port",
     type=int,
-    default=25565,
+    default=DEFAULT_PORT,
     help="Choose a Port for the Server! Default is 25565"
 )
 parser.add_argument(
     "--ram",
     type=float,
-    default=2,
+    default=DEFAULT_RAM,
     help="Choose how many RAM the server may use! Default is 2 Gigabyte!"
 )
 
