@@ -6,7 +6,7 @@ import subprocess
 import requests
 from bs4 import BeautifulSoup
 
-from mc_server_tool.src import (
+from .globals import (
     DEFAULT_TIMEOUT,
     RANDOM_USER_AGENT
 )

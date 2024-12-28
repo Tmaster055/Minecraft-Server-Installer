@@ -1,4 +1,5 @@
 import random
+import os
 
 #Here are stored all defaults!
 

@@ -1,7 +1,7 @@
 import argparse
 import os
 
-from mc_server_tool.src import (
+from .globals import (
     DEFAULT_PACKAGE,
     DEFAULT_PORT,
     DEFAULT_PATH,
