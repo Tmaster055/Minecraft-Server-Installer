@@ -89,6 +89,8 @@ def get_forge_link(version: str):
 
 def get_neoforge_link(version: str):
     formatted_version = version.lstrip('1.')
+    if not "." in formatted_version:
+        formatted_version += ".0"
 
     url = 'https://maven.neoforged.net/releases/net/neoforged/neoforge'
     response = requests.get(url, headers={

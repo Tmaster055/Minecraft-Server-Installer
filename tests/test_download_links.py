@@ -19,16 +19,19 @@ def test_server_links():
         else:
             url = get_serverjar_link(version, package)
 
-        print(url)
         if url is None:
             print(f"Failed to get jar file from Package: {package}")
         else:
             if package == "Mohist" or package == "Purpur":
                 if not version in url:
                     print(f"Failed to get jar file from Package: {package}")
+                else:
+                    print("Success")
             else:
                 if not ".jar" in url:
                     print(f"Failed to get jar file from Package: {package}")
+                else:
+                    print("Success")
 
 
 if __name__ == "__main__":
