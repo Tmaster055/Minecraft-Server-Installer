@@ -1,11 +1,9 @@
 from mc_server_tool.src.downloads import get_forge_link, get_neoforge_link, get_serverjar_link
+from mc_server_tool.src.globals import PACKAGES
 
 
 def test_server_links():
-    packages = ["Forge", "Fabric", "Paper", "Vanilla", "Spigot", "Pufferfish",
-             "Bukkit", "Purpur", "Neoforge", "Quilt", "Folia", "Mohist",
-             "Arclight", "Sponge", "BungeeCord"]
-    for package in packages:
+    for package in PACKAGES:
         print(f"Testing link for {package}!...")
         if package == "Mohist" or package == "Folia":
             version = "1.20.1"

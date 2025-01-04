@@ -5,7 +5,8 @@ from .globals import (
     DEFAULT_PACKAGE,
     DEFAULT_PORT,
     DEFAULT_PATH,
-    DEFAULT_RAM
+    DEFAULT_RAM,
+    PACKAGES
 )
 
 
@@ -41,9 +42,7 @@ parser.add_argument(
 parser.add_argument(
     "--package",
     type=str,
-    choices=["Forge", "Fabric", "Paper", "Vanilla", "Spigot", "Pufferfish",
-             "Bukkit", "Purpur", "Neoforge", "Quilt", "Folia", "Mohist",
-             "Arclight", "Sponge", "BungeeCord"],
+    choices=PACKAGES,
     default=DEFAULT_PACKAGE,
     help="Choose a Modloader-Package e.x Forge, Vanilla..."
 )
