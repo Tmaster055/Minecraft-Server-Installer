@@ -33,13 +33,13 @@ options:
   --install_java_21     To install java version 21 to run the server!
   --version VERSION     Choose a minecraft version e.x 1.20.1, 1.21...
   --package {Forge,Fabric,Paper,Vanilla,Spigot,Pufferfish,Bukkit,Purpur,Neoforge,
-             Quilt,Folia,Mohist,Arclight,Sponge}
+             Quilt,Folia,Mohist,Arclight,Sponge,BungeeCord,Waterfall}
                         Choose a Modloader-Package e.x Forge, Vanilla...
   --path PATH           Pick a folder were to save/edit the server!
                         It is creating a new folder in it! 
                         e.x C:Users/User/Server (Default is User Directory!)
   --port PORT           Choose a Port for the Server! Default is 25565
-  --ram RAM             Choose how many RAM the server may use! Default is 2 Gigabyte!
+  --ram RAM             Choose how many RAM the server may use! Default is 4 Gigabyte!
 ```
 - ### Examples
 Installs a server with version 1.20.4:
@@ -82,7 +82,7 @@ mc-server-tool --install_java_21
 | Spigot             | ✔️      | Fabric               | ✔️                                                                         | Arclight           | ✔️      |
 | Bukkit             | ✔️      | Pufferfish           | ✔️                                                                         | Sponge             | ✔️      |
 | Quilt              | ✔️      | Purpur               | ✔️                                                                         | BungeeCord         | ✔️      |
-
+| Waterfall          | ✔️      |
 Note: Not all versions are tested and there may occur problems with some versions!
 ### Upcoming Tasks
   - [x] Make Forge work

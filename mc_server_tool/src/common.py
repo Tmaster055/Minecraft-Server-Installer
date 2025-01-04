@@ -112,7 +112,7 @@ def configure_server(version: str, package: str, path: str,
     subprocess.run(command, cwd=folderpath, check=True)
     if package == "Arclight":
         clean_arclight_folder(folderpath)
-    if package != "Mohist" or package != "BungeeCord":
+    if package != "Mohist" or package != "BungeeCord" or package != "Waterfall":
         eula = os.path.join(path, folder, "eula.txt")
         while True:
             answer = input("Accept the eula? (Y|N) ").lower()

@@ -6,7 +6,7 @@ import os
 DEFAULT_PACKAGE = "Vanilla"
 PACKAGES = ["Forge", "Fabric", "Paper", "Vanilla", "Spigot", "Pufferfish",
              "Bukkit", "Purpur", "Neoforge", "Quilt", "Folia", "Mohist",
-             "Arclight", "Sponge", "BungeeCord"]
+             "Arclight", "Sponge", "BungeeCord", "Waterfall"]
 DEFAULT_PATH = os.path.expanduser("~")
 DEFAULT_RAM = 4  # Gigabyte
 DEFAULT_PORT = 25565
