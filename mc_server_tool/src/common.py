@@ -71,11 +71,19 @@ def open_settings(path: str, version: str, package: str):
     if not settings_path or not server_path:
         raise FileNotFoundError("No server folder or settings file found!")
 
+    if platform.system() == "Windows":
+        text_editor = "notepad"
+    else:
+        text_editor = "nano"
+
     command = [
-        "nano",
+        text_editor,
         settings_path,
     ]
-    subprocess.run(command, cwd=server_path, check=True)
+    try:
+        subprocess.run(command, cwd=server_path, check=True)
+    except FileNotFoundError:
+        print("No availiable text editor! Try installing nano!")
 
 
 def configure_server(version: str, package: str, path: str,
