@@ -7,11 +7,13 @@ from mc_server_tool.src import (
     clear, start_server,
     open_settings,
     download_minecraft_jar,
-    install_java_21
+    install_java_21,
+    start_installing_menu
 )
 
 
 def main():
+    clear()
     if args.install_java_21:
         install_java_21()
 
@@ -43,4 +45,4 @@ def main():
         open_settings(args.path, args.version, args.package)
 
     if not args.start and not args.settings and not args.install and not args.install_java_21:
-        subprocess.run(["mc-server-tool", "--help"], check=True)
+        start_installing_menu()
